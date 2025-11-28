@@ -7,21 +7,38 @@ import TerminalGrid from './TerminalGrid';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Add status indicators to products
 const products: Product[] = [
-  { id: 'TAC-001', title: 'OPS_PATCH_V1', category: 'MORALE', description: 'Standard issue morale patch with hook backing.', imageUrl: 'https://images.unsplash.com/photo-1620310214309-906927d627b4?q=80&w=1000&auto=format&fit=crop', details: ['3.5mm PVC', 'VELCRO HOOK', 'IR COMPATIBLE'] },
-  { id: 'KEY-092', title: 'HEX_CHAIN_L2', category: 'EDC', description: 'Rubberized keychain with hexagonal pattern.', imageUrl: 'https://images.unsplash.com/photo-1622445275576-721325763afe?q=80&w=1000&auto=format&fit=crop', details: ['PANTONE 802C', 'MATTE FINISH', 'BLK SPLIT RING'] },
-  { id: 'IND-442', title: 'CORP_BRAND', category: 'PROMO', description: 'Flat corporate branding asset, soft touch.', imageUrl: 'https://images.unsplash.com/photo-1616401776146-236b23d9df6d?q=80&w=1000&auto=format&fit=crop', details: ['2D MOLD', '4 COLOR', 'POLYBAG'] },
-  { id: 'FIG-X01', title: 'UNIT_CREST', category: 'MIL-SPEC', description: 'Heavy duty unit crest patch.', imageUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1000&auto=format&fit=crop', details: ['HAND PAINTED', 'SILICONE', 'HEAVY BASE'] },
-  { id: 'FSH-882', title: 'STREET_TAG', category: 'FASHION', description: 'High-detail garment label for streetwear.', imageUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop', details: ['SEW-ON CHANNEL', 'MATTE', 'EMBOSSED'] },
-  { id: 'MED-119', title: 'MEDIC_CROSS', category: 'MORALE', description: 'Glow in the dark medical identifier.', imageUrl: 'https://images.unsplash.com/photo-1550534882-628d61183c51?q=80&w=1000&auto=format&fit=crop', details: ['GITD PIGMENT', 'RED/WHITE', 'WASHABLE'] },
+  { id: 'TAC-001', title: 'OPS_PATCH_V1', category: 'MORALE', description: 'Standard issue morale patch with hook backing.', imageUrl: 'https://images.unsplash.com/photo-1620310214309-906927d627b4?q=80&w=1000&auto=format&fit=crop', details: ['3.5mm PVC', 'VELCRO HOOK', 'IR COMPATIBLE'], status: 'POPULAR' },
+  { id: 'KEY-092', title: 'HEX_CHAIN_L2', category: 'EDC', description: 'Rubberized keychain with hexagonal pattern.', imageUrl: 'https://images.unsplash.com/photo-1622445275576-721325763afe?q=80&w=1000&auto=format&fit=crop', details: ['PANTONE 802C', 'MATTE FINISH', 'BLK SPLIT RING'], status: 'NEW' },
+  { id: 'IND-442', title: 'CORP_BRAND', category: 'PROMO', description: 'Flat corporate branding asset, soft touch.', imageUrl: 'https://images.unsplash.com/photo-1616401776146-236b23d9df6d?q=80&w=1000&auto=format&fit=crop', details: ['2D MOLD', '4 COLOR', 'POLYBAG'], status: null },
+  { id: 'FIG-X01', title: 'UNIT_CREST', category: 'MIL-SPEC', description: 'Heavy duty unit crest patch.', imageUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1000&auto=format&fit=crop', details: ['HAND PAINTED', 'SILICONE', 'HEAVY BASE'], status: 'LIMITED' },
+  { id: 'FSH-882', title: 'STREET_TAG', category: 'FASHION', description: 'High-detail garment label for streetwear.', imageUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop', details: ['SEW-ON CHANNEL', 'MATTE', 'EMBOSSED'], status: null },
+  { id: 'MED-119', title: 'MEDIC_CROSS', category: 'MORALE', description: 'Glow in the dark medical identifier.', imageUrl: 'https://images.unsplash.com/photo-1550534882-628d61183c51?q=80&w=1000&auto=format&fit=crop', details: ['GITD PIGMENT', 'RED/WHITE', 'WASHABLE'], status: 'NEW' },
 ];
 
 export const Portfolio: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [filter, setFilter] = useState('ALL');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredProducts = filter === 'ALL' ? products : products.filter(p => p.category === filter);
+  const filteredProducts = filter === 'ALL' 
+    ? products.filter(p => 
+        p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.description.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : products.filter(p => 
+        p.category === filter &&
+        (p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+         p.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
   const categories = ['ALL', 'MORALE', 'EDC', 'PROMO', 'FASHION'];
+  
+  // Count products per category
+  const getCategoryCount = (category: string) => {
+    if (category === 'ALL') return products.length;
+    return products.filter(p => p.category === category).length;
+  };
 
   return (
     <div className="relative w-full min-h-screen">
@@ -35,7 +52,7 @@ export const Portfolio: React.FC = () => {
       {/* Main content above grid */}
       <section
         id={SectionId.PORTFOLIO}
-        className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-12 md:py-16"
+        className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16"
       >
         {/* Image + Text Showcase Section */}
         <motion.div
@@ -83,7 +100,7 @@ export const Portfolio: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-8 border-b border-white/10"
+          className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 pb-8 border-b border-white/10 gap-6 pt-12"
         >
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -95,24 +112,68 @@ export const Portfolio: React.FC = () => {
             </h2>
           </div>
 
-          <div className="flex gap-2 mt-6 md:mt-0 flex-wrap">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase transition-all ${filter === cat
-                  ? 'bg-elastic-accent text-black shadow-glow'
-                  : 'bg-white/5 border border-white/10 text-zinc-400 hover:border-elastic-accent/50 hover:text-white'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+            {/* Search Bar */}
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full sm:w-64 px-4 py-2 bg-black/10 backdrop-blur-sm border border-white/10 rounded-full text-white placeholder-zinc-500 focus:outline-none focus:border-elastic-accent/50 focus:bg-black/20 transition-all"
+              />
+              <svg className="absolute right-3 top-2.5 w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="flex gap-2 flex-wrap">
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => setFilter(cat)}
+                  className={`group relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase transition-all duration-300 ${filter === cat
+                    ? 'bg-elastic-accent text-black shadow-glow scale-105'
+                    : 'bg-white/5 border border-white/10 text-zinc-400 hover:border-elastic-accent/50 hover:text-white hover:bg-white/10 hover:scale-105'
+                    }`}
+                >
+                  <span className="relative z-10">{cat}</span>
+                  <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] font-bold ${filter === cat
+                    ? 'bg-black/20 text-black'
+                    : 'bg-white/10 text-zinc-500 group-hover:bg-elastic-accent/20 group-hover:text-elastic-accent'
+                  }`}>
+                    {getCategoryCount(cat)}
+                  </span>
+                  {filter === cat && (
+                    <div className="absolute inset-0 rounded-full bg-elastic-accent opacity-20 animate-pulse"></div>
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
         </motion.div>
 
-        {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Results Counter */}
+        {filteredProducts.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16"
+          >
+            <div className="text-zinc-500 text-lg mb-4">No products found</div>
+            <div className="text-zinc-600 text-sm">Try adjusting your search or filters</div>
+          </motion.div>
+        ) : (
+          <>
+            <div className="text-zinc-500 text-sm mb-6 text-center">
+              {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found
+              {searchTerm && ` for "${searchTerm}"`}
+              {filter !== 'ALL' && ` in ${filter}`}
+            </div>
+
+            {/* Portfolio Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -124,9 +185,30 @@ export const Portfolio: React.FC = () => {
               className="group cursor-pointer relative rounded-2xl overflow-hidden
                     bg-black/10 backdrop-blur-sm
                     border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.5)]
-                    hover:border-elastic-accent/70 hover:shadow-glow-mint transition-all duration-500"
-              whileHover={{ y: -8, scale: 1.02 }}
+                    hover:border-elastic-accent/70 hover:shadow-glow-mint transition-all duration-500
+                    hover:scale-105 hover:rotate-x-2 hover:rotate-y-2"
+              style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+              whileHover={{ 
+                y: -8, 
+                scale: 1.05,
+                rotateX: 2,
+                rotateY: 2,
+                transition: { duration: 0.3 }
+              }}
             >
+              <div className="absolute top-4 left-4 z-20">
+                {product.status && (
+                  <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider animate-pulse ${
+                    product.status === 'NEW' ? 'bg-green-500 text-black' :
+                    product.status === 'POPULAR' ? 'bg-orange-500 text-white' :
+                    product.status === 'LIMITED' ? 'bg-red-500 text-white' :
+                    'bg-gray-500 text-white'
+                  }`}>
+                    {product.status}
+                  </span>
+                )}
+              </div>
+              
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={product.imageUrl}
@@ -147,7 +229,9 @@ export const Portfolio: React.FC = () => {
               <div className="absolute top-4 right-4 w-2 h-2 bg-elastic-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-glow-pulse"></div>
             </motion.div>
           ))}
-        </div>
+            </div>
+          </>
+        )}
 
       {/* Enhanced Modal */}
       {selectedProduct && (

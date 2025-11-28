@@ -5,6 +5,7 @@ export interface Product {
   description: string;
   imageUrl: string;
   details?: string[];
+  status?: 'NEW' | 'POPULAR' | 'LIMITED' | null;
 }
 
 export interface ContactFormState {
