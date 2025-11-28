@@ -164,8 +164,8 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div ref={logoRef} className="flex-shrink-0 pl-4 pr-6">
-            <Link to="/" className="text-base md:text-lg font-semibold tracking-tight whitespace-nowrap">
-              ELASTIC <span className="text-elastic-accent">MFG</span>
+            <Link to="/" className="flex items-center">
+              <img src="/logo.png" alt="Elastic MFG" className="h-12 md:h-14 w-auto object-contain" />
             </Link>
           </div>
 

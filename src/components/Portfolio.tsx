@@ -8,13 +8,14 @@ import TerminalGrid from './TerminalGrid';
 gsap.registerPlugin(ScrollTrigger);
 
 // Add status indicators to products
+// Add status indicators to products
 const products: Product[] = [
-  { id: 'TAC-001', title: 'OPS_PATCH_V1', category: 'MORALE', description: 'Standard issue morale patch with hook backing.', imageUrl: 'https://images.unsplash.com/photo-1620310214309-906927d627b4?q=80&w=1000&auto=format&fit=crop', details: ['3.5mm PVC', 'VELCRO HOOK', 'IR COMPATIBLE'], status: 'POPULAR' },
-  { id: 'KEY-092', title: 'HEX_CHAIN_L2', category: 'EDC', description: 'Rubberized keychain with hexagonal pattern.', imageUrl: 'https://images.unsplash.com/photo-1622445275576-721325763afe?q=80&w=1000&auto=format&fit=crop', details: ['PANTONE 802C', 'MATTE FINISH', 'BLK SPLIT RING'], status: 'NEW' },
-  { id: 'IND-442', title: 'CORP_BRAND', category: 'PROMO', description: 'Flat corporate branding asset, soft touch.', imageUrl: 'https://images.unsplash.com/photo-1616401776146-236b23d9df6d?q=80&w=1000&auto=format&fit=crop', details: ['2D MOLD', '4 COLOR', 'POLYBAG'], status: null },
-  { id: 'FIG-X01', title: 'UNIT_CREST', category: 'MIL-SPEC', description: 'Heavy duty unit crest patch.', imageUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1000&auto=format&fit=crop', details: ['HAND PAINTED', 'SILICONE', 'HEAVY BASE'], status: 'LIMITED' },
-  { id: 'FSH-882', title: 'STREET_TAG', category: 'FASHION', description: 'High-detail garment label for streetwear.', imageUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop', details: ['SEW-ON CHANNEL', 'MATTE', 'EMBOSSED'], status: null },
-  { id: 'MED-119', title: 'MEDIC_CROSS', category: 'MORALE', description: 'Glow in the dark medical identifier.', imageUrl: 'https://images.unsplash.com/photo-1550534882-628d61183c51?q=80&w=1000&auto=format&fit=crop', details: ['GITD PIGMENT', 'RED/WHITE', 'WASHABLE'], status: 'NEW' },
+  { id: 'TAC-001', title: 'OPS_PATCH_V1', category: 'MORALE', description: 'Standard issue morale patch with hook backing.', imageUrl: '/images/patch1.jpg', details: ['3.5mm PVC', 'VELCRO HOOK', 'IR COMPATIBLE'], status: 'POPULAR' },
+  { id: 'KEY-092', title: 'HEX_CHAIN_L2', category: 'EDC', description: 'Rubberized keychain with hexagonal pattern.', imageUrl: '/images/keychain1.jpg', details: ['PANTONE 802C', 'MATTE FINISH', 'BLK SPLIT RING'], status: 'NEW' },
+  { id: 'IND-442', title: 'CORP_BRAND', category: 'PROMO', description: 'Flat corporate branding asset, soft touch.', imageUrl: '/images/collection2.jpg', details: ['2D MOLD', '4 COLOR', 'POLYBAG'], status: null },
+  { id: 'FIG-X01', title: 'UNIT_CREST', category: 'MIL-SPEC', description: 'Heavy duty unit crest patch.', imageUrl: '/images/patch2.jpg', details: ['HAND PAINTED', 'SILICONE', 'HEAVY BASE'], status: 'LIMITED' },
+  { id: 'FSH-882', title: 'STREET_TAG', category: 'FASHION', description: 'High-detail garment label for streetwear.', imageUrl: '/images/keychain2.jpg', details: ['SEW-ON CHANNEL', 'MATTE', 'EMBOSSED'], status: null },
+  { id: 'MED-119', title: 'MEDIC_CROSS', category: 'MORALE', description: 'Glow in the dark medical identifier.', imageUrl: '/images/keychain3.jpg', details: ['GITD PIGMENT', 'RED/WHITE', 'WASHABLE'], status: 'NEW' },
 ];
 
 // 3D Tilt Card Component
@@ -66,9 +67,9 @@ const TiltCard = ({ product, onClick, index }: { product: Product; onClick: () =
       <div style={{ transform: "translateZ(50px)" }} className="absolute top-4 left-4 z-20">
         {product.status && (
           <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider animate-pulse ${product.status === 'NEW' ? 'bg-green-500 text-black' :
-              product.status === 'POPULAR' ? 'bg-orange-500 text-white' :
-                product.status === 'LIMITED' ? 'bg-red-500 text-white' :
-                  'bg-gray-500 text-white'
+            product.status === 'POPULAR' ? 'bg-orange-500 text-white' :
+              product.status === 'LIMITED' ? 'bg-red-500 text-white' :
+                'bg-gray-500 text-white'
             }`}>
             {product.status}
           </span>
@@ -182,7 +183,7 @@ export const Portfolio: React.FC = () => {
             {/* Image side */}
             <div className="relative aspect-[4/3] lg:aspect-square overflow-hidden">
               <img
-                src="https://picsum.photos/seed/elastic-mfg-manufacturing/1200/1200.jpg"
+                src="/images/collection.jpg"
                 alt="Manufacturing precision"
                 className="absolute inset-0 w-full h-full object-cover"
               />
