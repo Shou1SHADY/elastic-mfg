@@ -43,7 +43,7 @@ export const About: React.FC = () => {
   }, []);
 
   return (
-    <section id={SectionId.ABOUT} ref={sectionRef} className="pt-6 md:pt-8 pb-16 md:pb-20 bg-[#020617] relative overflow-hidden">
+    <section id={SectionId.ABOUT} ref={sectionRef} className="pt-6 md:pt-8 pb-16 md:pb-20 bg-[#020617] relative overflow-hidden rounded-3xl">
       {/* Subtle neutral background texture */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
 
@@ -131,7 +131,7 @@ export const About: React.FC = () => {
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
-              className={`feature-card group relative p-8 rounded-2xl
+              className={`feature-card group relative p-8 rounded-3xl
                     bg-[#020617] border border-white/15
                     transition-all duration-500 ease-out
                     hover:-translate-y-2 hover:scale-[1.02]
@@ -139,7 +139,7 @@ export const About: React.FC = () => {
               whileHover={{ y: -8 }}
             >
               {/* Icon with unique background per card */}
-              <div className={`relative w-14 h-14 rounded-xl flex items-center justify-center mb-6 
+              <div className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-6 
                     group-hover:scale-110 transition-all duration-500
                     ${idx === 0 ? 'bg-elastic-accent/10 border border-elastic-accent/30 group-hover:border-elastic-accent group-hover:shadow-glow' : ''}
                     ${idx === 1 ? 'bg-elastic-secondary/10 border border-elastic-secondary/30 group-hover:border-elastic-secondary group-hover:shadow-glow-purple' : ''}
@@ -158,7 +158,7 @@ export const About: React.FC = () => {
               </p>
 
                 {/* Unique Hover Glow per card */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none
                       ${idx === 0 ? 'bg-gradient-to-br from-elastic-accent/5 via-transparent to-transparent' : ''}
                       ${idx === 1 ? 'bg-gradient-to-br from-elastic-secondary/5 via-transparent to-transparent' : ''}
                       ${idx === 2 ? 'bg-gradient-to-br from-elastic-highlight/5 via-transparent to-transparent' : ''}`}></div>
@@ -231,7 +231,7 @@ export const About: React.FC = () => {
                 type="button"
                 whileHover={{ y: -6, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative h-full rounded-2xl border border-white/10 bg-black/40 px-4 py-5 text-left overflow-hidden"
+                className="group relative h-full rounded-3xl border border-white/10 bg-black/40 px-4 py-5 text-left overflow-hidden"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-elastic-accent/10 via-transparent to-elastic-secondary/10" />
                 <div className="relative z-10 space-y-3">
