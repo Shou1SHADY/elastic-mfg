@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SectionId, type Product } from '../types';
+import TerminalGrid from './TerminalGrid';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,23 +24,26 @@ export const Portfolio: React.FC = () => {
   const categories = ['ALL', 'MORALE', 'EDC', 'PROMO', 'FASHION'];
 
   return (
-    <section
-      id={SectionId.PORTFOLIO}
-      className="pt-6 md:pt-8 pb-16 md:pb-20 relative overflow-hidden bg-black"
-    >
-      {/* Animated Glow */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-elastic-highlight/20 blur-[140px] rounded-full pointer-events-none animate-pulse-slow"></div>
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
+    <div className="relative w-full min-h-screen">
+      {/* TerminalGrid covers entire component */}
+      <TerminalGrid
+        accentColors={['#3b82f6', '#8b5cf6', '#06b6d4']}
+        density={0.8}
+        className="absolute inset-0 w-full h-full z-0"
+      />
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
-
+      {/* Main content above grid */}
+      <section
+        id={SectionId.PORTFOLIO}
+        className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-12 md:py-16"
+      >
         {/* Image + Text Showcase Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="mb-12 rounded-3xl overflow-hidden border border-white/10 bg-[#0a0a0a]"
+          className="mb-12 rounded-3xl overflow-hidden border border-white/10 bg-black/10 backdrop-blur-sm"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Image side */}
@@ -66,9 +70,9 @@ export const Portfolio: React.FC = () => {
                 Every batch is optically verified, hand‑finished, and shipped on time.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
-                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/40">Low MOQ</span>
-                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/40">QC Gates</span>
-                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/40">Global Fulfillment</span>
+                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/10">Low MOQ</span>
+                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/10">QC Gates</span>
+                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/10">Global Fulfillment</span>
               </div>
             </div>
           </div>
@@ -118,10 +122,9 @@ export const Portfolio: React.FC = () => {
               transition={{ delay: index * 0.1 }}
               onClick={() => setSelectedProduct(product)}
               className="group cursor-pointer relative rounded-2xl overflow-hidden
-                    bg-[#3f3f46]
-                    border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.8)]
-                    hover:border-elastic-accent/70 hover:shadow-glow-mint glow-border-hover
-                    transition-all duration-500"
+                    bg-black/10 backdrop-blur-sm
+                    border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.5)]
+                    hover:border-elastic-accent/70 hover:shadow-glow-mint transition-all duration-500"
               whileHover={{ y: -8, scale: 1.02 }}
             >
               <div className="aspect-[4/3] overflow-hidden">
@@ -145,7 +148,6 @@ export const Portfolio: React.FC = () => {
             </motion.div>
           ))}
         </div>
-      </div>
 
       {/* Enhanced Modal */}
       {selectedProduct && (
@@ -162,18 +164,18 @@ export const Portfolio: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="md:w-1/2 relative h-64 md:h-auto bg-zinc-900">
-              <img src={selectedProduct.imageUrl} className="w-full h-full object-cover" alt={selectedProduct.title} />
+              <img src={selectedProduct!.imageUrl} className="w-full h-full object-cover" alt={selectedProduct!.title} />
             </div>
             <div className="md:w-1/2 p-8 flex flex-col bg-elastic-darker">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-3xl font-bold text-gradient uppercase tracking-tight">{selectedProduct.title}</h2>
+                <h2 className="text-3xl font-bold text-gradient uppercase tracking-tight">{selectedProduct!.title}</h2>
                 <button onClick={() => setSelectedProduct(null)} className="text-zinc-400 hover:text-white text-2xl">×</button>
               </div>
-              <div className="text-xs font-mono text-elastic-accent mb-6">{selectedProduct.id} // {selectedProduct.category}</div>
-              <p className="text-zinc-300 text-base leading-relaxed mb-6 flex-grow">{selectedProduct.description}</p>
+              <div className="text-xs font-mono text-elastic-accent mb-6">{selectedProduct!.id} // {selectedProduct!.category}</div>
+              <p className="text-zinc-300 text-base leading-relaxed mb-6 flex-grow">{selectedProduct!.description}</p>
               <div className="card-glass p-5 rounded-xl mb-6">
                 <div className="text-xs text-zinc-500 uppercase tracking-widest mb-3 font-semibold">Specifications</div>
-                {selectedProduct.details?.map((d, i) => (
+                {selectedProduct!.details?.map((d, i) => (
                   <div key={i} className="text-sm text-zinc-300 font-mono py-2 border-b border-white/10 last:border-0">{d}</div>
                 ))}
               </div>
@@ -184,6 +186,7 @@ export const Portfolio: React.FC = () => {
           </motion.div>
         </motion.div>
       )}
-    </section>
+      </section>
+    </div>
   );
 };
