@@ -155,7 +155,7 @@ export const Navbar: React.FC = () => {
       >
         <div
           ref={headerRef}
-          className="flex h-14 items-center justify-center border border-white/10 bg-elastic-black/70 px-4 shadow-lg backdrop-blur-xl md:px-6 overflow-hidden"
+          className="flex h-14 items-center justify-center border border-white/10 bg-elastic-black/70 px-4 shadow-lg backdrop-blur-strong md:px-6 overflow-hidden transition-all duration-300"
         >
           <div ref={iconRef} className="absolute opacity-0 text-white">
             <div ref={rotatingIconRef}>
@@ -173,22 +173,28 @@ export const Navbar: React.FC = () => {
             ref={navRef}
             className="hidden md:flex items-center space-x-6 mx-8"
           >
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <button
                 key={link.path}
                 onClick={() => navigateTo(link.path)}
                 className={cn(
-                  'relative text-sm font-medium text-white/70 transition-colors group uppercase tracking-wider',
-                  pathname === link.path && 'text-white'
+                  'relative text-sm font-medium transition-all duration-300 group uppercase tracking-wider',
+                  pathname === link.path ? 'text-white' : 'text-white/60 hover:text-white'
                 )}
+                style={{
+                  animation: `slideInUp 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards ${index * 0.1}s`,
+                  opacity: 0,
+                }}
               >
                 {link.label}
                 <span
                   className={cn(
-                    'absolute -bottom-1 left-0 w-full h-0.5 bg-elastic-accent scale-x-0 origin-left transition-transform duration-300 ease-out',
-                    pathname === link.path && 'scale-x-100'
+                    'absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-elastic-accent to-elastic-highlight transition-all duration-300 ease-out',
+                    pathname === link.path
+                      ? 'w-full opacity-100'
+                      : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
                   )}
-                ></span>
+                />
               </button>
             ))}
           </nav>
@@ -196,10 +202,10 @@ export const Navbar: React.FC = () => {
           <div ref={actionsRef} className="hidden md:flex items-center gap-3">
             <button
               onClick={() => navigateTo('/contact')}
-              className="inline-flex items-center gap-2 rounded-full px-6 py-2 text-sm font-medium tracking-[0.2em] text-white/90 transition hover:bg-elastic-accent hover:text-black min-w-[11rem] justify-center whitespace-nowrap"
+              className="relative inline-flex items-center gap-2 rounded-full px-6 py-2 text-sm font-medium tracking-[0.2em] text-white/90 transition-all duration-300 hover:bg-elastic-accent hover:text-black hover:shadow-glow min-w-[11rem] justify-center whitespace-nowrap overflow-hidden group shimmer"
             >
-              Start Project
-              <ArrowRight className="h-4 w-4" />
+              <span className="relative z-10">Start Project</span>
+              <ArrowRight className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </div>
 

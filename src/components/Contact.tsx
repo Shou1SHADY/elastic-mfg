@@ -1,19 +1,35 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SectionId } from '../types';
+import { motion, AnimatePresence } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Contact: React.FC = () => {
     const [formData, setFormData] = useState({ name: '', email: '', company: '', details: '' });
+    const [formState, setFormState] = useState<'idle' | 'processing' | 'success'>('idle');
     const sectionRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         // GSAP animations removed since background elements are removed
         // TerminalGrid now handles the background animations
     }, []);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setFormState('processing');
+
+        // Simulate API call
+        setTimeout(() => {
+            setFormState('success');
+            // Reset after success
+            setTimeout(() => {
+                setFormState('idle');
+                setFormData({ name: '', email: '', company: '', details: '' });
+            }, 3000);
+        }, 2000);
+    };
 
     return (
         <section id={SectionId.CONTACT} ref={sectionRef} className="py-24 relative overflow-hidden">
@@ -62,7 +78,7 @@ export const Contact: React.FC = () => {
 
                     {/* Right: Input Terminal */}
                     <div className="lg:col-span-7 p-6 md:p-8 lg:p-12 bg-[#0a0a0a]/60 relative">
-                        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-6" onSubmit={handleSubmit}>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Name Input */}
@@ -74,6 +90,7 @@ export const Contact: React.FC = () => {
                                         placeholder="Name"
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                        disabled={formState !== 'idle'}
                                     />
                                     <label
                                         htmlFor="name"
@@ -96,6 +113,7 @@ export const Contact: React.FC = () => {
                                         placeholder="Company"
                                         value={formData.company}
                                         onChange={e => setFormData({ ...formData, company: e.target.value })}
+                                        disabled={formState !== 'idle'}
                                     />
                                     <label
                                         htmlFor="company"
@@ -119,6 +137,7 @@ export const Contact: React.FC = () => {
                                     placeholder="Email"
                                     value={formData.email}
                                     onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                    disabled={formState !== 'idle'}
                                 />
                                 <label
                                     htmlFor="email"
@@ -140,6 +159,7 @@ export const Contact: React.FC = () => {
                                     placeholder="Details"
                                     value={formData.details}
                                     onChange={e => setFormData({ ...formData, details: e.target.value })}
+                                    disabled={formState !== 'idle'}
                                 ></textarea>
                                 <label
                                     htmlFor="details"
@@ -154,10 +174,64 @@ export const Contact: React.FC = () => {
                             </div>
 
                             <div className="pt-2">
-                                <button className="w-full py-4 bg-elastic-accent text-black font-bold text-sm uppercase tracking-[0.2em] rounded-xl shadow-[0_0_20px_rgba(114,200,194,0.3)] hover:bg-white hover:shadow-[0_0_30px_rgba(114,200,194,0.6)] hover:scale-105 transition-all duration-300 ease-out transform active:scale-95 relative overflow-hidden group">
-                                    <span className="relative z-10 flex items-center justify-center gap-2">
-                                        Transmit Data <span className="text-[10px] opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">→</span>
-                                    </span>
+                                <button
+                                    type="submit"
+                                    disabled={formState !== 'idle'}
+                                    className={`w-full py-4 font-bold text-sm uppercase tracking-[0.2em] rounded-xl shadow-[0_0_20px_rgba(114,200,194,0.3)] transition-all duration-300 ease-out transform relative overflow-hidden group
+                                        ${formState === 'idle' ? 'bg-elastic-accent text-black hover:bg-white hover:shadow-[0_0_30px_rgba(114,200,194,0.6)] hover:scale-105 active:scale-95' : ''}
+                                        ${formState === 'processing' ? 'bg-zinc-800 text-zinc-400 cursor-wait' : ''}
+                                        ${formState === 'success' ? 'bg-green-500 text-black shadow-[0_0_30px_rgba(34,197,94,0.6)]' : ''}
+                                    `}
+                                >
+                                    <div className="relative z-10 flex items-center justify-center gap-2 h-6">
+                                        <AnimatePresence mode='wait'>
+                                            {formState === 'idle' && (
+                                                <motion.span
+                                                    key="idle"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    className="flex items-center gap-2"
+                                                >
+                                                    Transmit Data <span className="text-[10px] opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">→</span>
+                                                </motion.span>
+                                            )}
+                                            {formState === 'processing' && (
+                                                <motion.span
+                                                    key="processing"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    className="flex items-center gap-3"
+                                                >
+                                                    <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                                    Encrypting...
+                                                </motion.span>
+                                            )}
+                                            {formState === 'success' && (
+                                                <motion.span
+                                                    key="success"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    className="flex items-center gap-2"
+                                                >
+                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                                    Data Secured
+                                                </motion.span>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+
+                                    {/* Progress Bar for Processing State */}
+                                    {formState === 'processing' && (
+                                        <motion.div
+                                            className="absolute bottom-0 left-0 h-1 bg-elastic-accent"
+                                            initial={{ width: "0%" }}
+                                            animate={{ width: "100%" }}
+                                            transition={{ duration: 2, ease: "linear" }}
+                                        />
+                                    )}
                                 </button>
                             </div>
                         </form>

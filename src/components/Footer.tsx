@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
                         Transforming digital concepts into high-fidelity physical products.
                      </p>
                      <div className="flex items-center gap-3">
-                        <span className="h-px w-12 bg-gradient-to-r from-elastic-accent to-transparent"></span>
+                        <span className="h-px w-12 bg-gradient-to-r from-elastic-accent via-elastic-highlight to-transparent"></span>
                         <span className="text-elastic-accent font-mono text-xs uppercase tracking-widest">Est. 2023</span>
                      </div>
                   </motion.div>
@@ -72,9 +72,9 @@ export const Footer: React.FC = () => {
                         <li key={link.name}>
                            <Link
                               to={link.path}
-                              className="text-zinc-400 text-sm hover:text-elastic-accent transition-colors duration-300 flex items-center gap-2 group"
+                              className="text-zinc-400 text-sm hover:text-elastic-accent transition-all duration-300 flex items-center gap-2 group"
                            >
-                              <span className="w-0 h-px bg-elastic-accent transition-all duration-300 group-hover:w-4"></span>
+                              <span className="w-0 h-px bg-gradient-to-r from-elastic-accent to-elastic-highlight transition-all duration-300 group-hover:w-4"></span>
                               {link.name}
                            </Link>
                         </li>
@@ -97,11 +97,11 @@ export const Footer: React.FC = () => {
                            <li key={link.name}>
                               <a
                                  href={link.url}
-                                 className="text-zinc-400 text-sm hover:text-elastic-highlight transition-colors duration-300 flex items-center gap-3 group"
+                                 className="text-zinc-400 text-sm hover:text-elastic-highlight transition-all duration-300 flex items-center gap-3 group hover-lift"
                                  target="_blank"
                                  rel="noopener noreferrer"
                               >
-                                 <Icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                                 <Icon className="w-4 h-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" />
                                  {link.name}
                               </a>
                            </li>
