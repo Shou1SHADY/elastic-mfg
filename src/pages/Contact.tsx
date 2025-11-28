@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Contact as ContactComponent } from '../components/Contact';
+import TerminalGrid from '../components/TerminalGrid';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -182,9 +183,20 @@ export const Contact: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="pt-20"
+            className="pt-20 relative min-h-screen"
         >
-            <ContactComponent />
+            {/* Terminal Grid Background */}
+            <TerminalGrid
+                height="100%"
+                accentColors={["#00e5ff"]}
+                density={0}
+                className="fixed top-0 left-0 w-full h-full"
+            />
+            
+            {/* Contact Content */}
+            <div className="relative z-10">
+                <ContactComponent />
+            </div>
         </motion.div>
     );
 };

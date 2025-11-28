@@ -9,63 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 export const Contact: React.FC = () => {
     const [formData, setFormData] = useState({ name: '', email: '', company: '', details: '' });
     const sectionRef = useRef<HTMLElement>(null);
-    const gradientsRef = useRef<HTMLDivElement>(null);
-    const gridRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (!sectionRef.current) return;
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.5
-            }
-        });
-
-        // 1. Gradients Move Slow (Deep Background)
-        if (gradientsRef.current) {
-            tl.to(gradientsRef.current, { yPercent: 15, ease: "none" }, 0);
-        }
-
-        // 2. Grid Moves Faster (Mid-ground texture)
-        if (gridRef.current) {
-            tl.to(gridRef.current, { yPercent: 40, ease: "none" }, 0);
-        }
-
+        // GSAP animations removed since background elements are removed
+        // TerminalGrid now handles the background animations
     }, []);
 
     return (
-        <section id={SectionId.CONTACT} ref={sectionRef} className="py-24 bg-[#050505] relative border-t border-white/5 overflow-hidden">
-
-            {/* --- Animated Background Layer --- */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-
-                {/* Layer 1: Gradients (Slow) */}
-                <div ref={gradientsRef} className="absolute inset-0 will-change-transform">
-                    {/* Base darker gradient to set mood */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#0a0a0a] to-[#050505]"></div>
-
-                    {/* Slow Moving Aurora Gradient (Accent to Secondary) */}
-                    <div
-                        className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-10 blur-[100px] animate-spin-slow"
-                        style={{
-                            background: 'conic-gradient(from 0deg at 50% 50%, #050505 0deg, #72C8C2 100deg, #050505 180deg, #5D9CC9 280deg, #050505 360deg)',
-                            animationDuration: '60s'
-                        }}
-                    ></div>
-
-                    {/* Secondary drifting pool for depth */}
-                    <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-elastic-secondary/5 rounded-full blur-[120px] animate-pulse-slow mix-blend-screen"></div>
-                </div>
-
-                {/* Layer 2: Grid (Fast) */}
-                <div ref={gridRef} className="absolute inset-0 will-change-transform">
-                    {/* Subtle Grid Texture Overlay */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:50px_50px] opacity-20"></div>
-                </div>
-            </div>
+        <section id={SectionId.CONTACT} ref={sectionRef} className="py-24 relative overflow-hidden">
 
             {/* --- Content Container --- */}
             <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 relative z-10">
