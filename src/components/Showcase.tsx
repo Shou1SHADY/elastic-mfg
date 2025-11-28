@@ -12,7 +12,7 @@ export const Showcase: React.FC = () => {
   }, []);
 
   return (
-    <section id={SectionId.SHOWCASE} className="relative py-40 bg-elastic-black border-y border-white/5 overflow-hidden">
+    <section id={SectionId.SHOWCASE} className="relative pt-6 md:pt-8 pb-16 md:pb-20 bg-[#0d1117] border-y border-white/5 overflow-hidden">
         
         {/* Background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-elastic-secondary/5 blur-[120px] rounded-full pointer-events-none"></div>
@@ -33,7 +33,7 @@ export const Showcase: React.FC = () => {
                 </div>
             </div>
 
-            <div className="relative aspect-[21/9] border border-white/10 bg-[#18181b] overflow-hidden group shadow-2xl">
+            <div className="relative w-full h-[70vh] md:h-[80vh] rounded-2xl overflow-hidden border border-white/10 bg-[#141923] shadow-[0_30px_90px_rgba(0,0,0,0.8)]">
                 {/* Video Placeholder */}
                 <video 
                     ref={videoRef}

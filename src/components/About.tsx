@@ -43,7 +43,7 @@ export const About: React.FC = () => {
   }, []);
 
   return (
-    <section id={SectionId.ABOUT} ref={sectionRef} className="py-16 md:py-20 bg-[#020617] relative overflow-hidden">
+    <section id={SectionId.ABOUT} ref={sectionRef} className="pt-6 md:pt-8 pb-16 md:pb-20 bg-[#020617] relative overflow-hidden">
       {/* Subtle neutral background texture */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
 
@@ -225,7 +225,7 @@ export const About: React.FC = () => {
                 title: 'Scale',
                 body: 'Lock specs, then ramp into reliable monthly volumes with live tracking and QC reporting.',
               },
-            ].map((step, index) => (
+            ].map((step) => (
               <motion.button
                 key={step.label}
                 type="button"

@@ -25,13 +25,54 @@ export const Portfolio: React.FC = () => {
   return (
     <section
       id={SectionId.PORTFOLIO}
-      className="py-16 md:py-20 relative overflow-hidden bg-black"
+      className="pt-6 md:pt-8 pb-16 md:pb-20 relative overflow-hidden bg-black"
     >
       {/* Animated Glow */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-elastic-highlight/20 blur-[140px] rounded-full pointer-events-none animate-pulse-slow"></div>
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+
+        {/* Image + Text Showcase Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="mb-12 rounded-3xl overflow-hidden border border-white/10 bg-[#0a0a0a]"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Image side */}
+            <div className="relative aspect-[4/3] lg:aspect-square overflow-hidden">
+              <img
+                src="https://picsum.photos/seed/elastic-mfg-manufacturing/1200/1200.jpg"
+                alt="Manufacturing precision"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </div>
+
+            {/* Text side */}
+            <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center space-y-4 md:space-y-6">
+              <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.3em] text-elastic-accent/80">
+                <span className="h-px w-8 bg-gradient-to-r from-elastic-accent to-transparent" />
+                <span>Capability</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                Precision at Scale.
+              </h3>
+              <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-lg">
+                From single prototypes to 500k+ monthly runs, our production lines are built for consistency. 
+                Every batch is optically verified, hand‑finished, and shipped on time.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/40">Low MOQ</span>
+                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/40">QC Gates</span>
+                <span className="px-3 py-1 rounded-full border border-white/10 text-[11px] uppercase tracking-[0.18em] text-zinc-300 bg-black/40">Global Fulfillment</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Header */}
         <motion.div

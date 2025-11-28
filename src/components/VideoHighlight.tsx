@@ -50,12 +50,12 @@ export const VideoHighlight: React.FC = () => {
     return (
         <section
             ref={containerRef}
-            className="relative bg-[#05060d] border-b border-white/5 overflow-hidden"
+            className="relative h-screen pt-6 md:pt-8 pb-16 md:pb-20 bg-[#0a0f1c] border-b border-white/5 overflow-hidden"
         >
-            <div className="flex flex-col lg:flex-row min-h-screen relative z-10">
+            <div className="flex flex-col lg:flex-row h-full relative z-10">
 
                 {/* Video Side (65%) */}
-                <div className="w-full lg:w-[65%] relative overflow-hidden h-[60vh] lg:h-auto border-r border-white/5 bg-[#0b0f19] group order-1 lg:order-1 shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
+                <div className="w-full lg:w-[65%] relative overflow-hidden h-[40vh] lg:h-full border-r border-white/5 bg-[#141923] group order-1 lg:order-1 shadow-[0_25px_80px_rgba(0,0,0,0.6)]">
                     {/* Parallax Wrapper */}
                     <div ref={videoWrapperRef} className="absolute inset-0 h-[120%] -top-[10%] w-full">
                         <video
@@ -86,7 +86,7 @@ export const VideoHighlight: React.FC = () => {
                 </div>
 
                 {/* Text Side (35%) */}
-                <div className="w-full lg:w-[35%] flex flex-col justify-center relative z-10 bg-[#050812] order-2 lg:order-2 border-t lg:border-t-0 border-white/5 shadow-[0_20px_60px_rgba(5,5,5,0.6)]">
+                <div className="w-full lg:w-[35%] flex flex-col justify-center relative z-10 bg-[#0d1117] order-2 lg:order-2 border-t lg:border-t-0 border-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
 
                     {/* Decorative Background */}
                     <div className="absolute inset-0 bg-black/10 pointer-events-none"></div>

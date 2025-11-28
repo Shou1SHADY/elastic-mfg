@@ -35,7 +35,29 @@ export const Process: React.FC = () => {
   }, []);
 
   return (
-    <section id={SectionId.PROCESS} ref={containerRef} className="pt-10 md:pt-14 pb-16 md:pb-20 bg-elastic-darker relative overflow-hidden border-y border-white/5">
+    <section id={SectionId.PROCESS} ref={containerRef} className="pt-6 md:pt-8 pb-16 md:pb-20 bg-elastic-darker relative overflow-hidden border-y border-white/5">
+      {/* Top banner: visual intro for Process */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        className="mb-10 md:mb-12 rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#020617] via-[#030b1a] to-[#020617] px-6 md:px-10 lg:px-12 py-12 md:py-16 text-center"
+      >
+        <div className="flex flex-col items-center space-y-4 md:space-y-6 max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.3em] text-elastic-accent/80">
+            <span className="h-px w-10 bg-gradient-to-r from-elastic-accent to-transparent" />
+            <span>Process</span>
+            <span className="h-px w-10 bg-gradient-to-l from-elastic-accent to-transparent" />
+          </div>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+            Six-Step Precision Pipeline.
+          </h1>
+          <p className="text-zinc-400 text-sm md:text-base max-w-2xl leading-relaxed">
+            From CAD to your hands. Our automated pipeline ensures consistency, speed, and quality at scale.
+          </p>
+        </div>
+      </motion.div>
       {/* Diagonal Accent Line */}
       <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-elastic-secondary via-elastic-accent to-elastic-highlight opacity-20"></div>
 
