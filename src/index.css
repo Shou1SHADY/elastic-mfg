@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #050505;
+    font-family: 'Inter', sans-serif;
+  }
+
+  body {
+    @apply bg-elastic-black text-zinc-100 antialiased overflow-x-hidden;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans text-white;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    @apply bg-elastic-accent text-black;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .card-glass {
+    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.3);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-elastic-accent via-elastic-highlight to-elastic-secondary;
+  }
+
+  .glow-border {
+    box-shadow: 0 0 0 1px rgba(0, 217, 255, 0.3), 0 0 20px rgba(0, 217, 255, 0.2);
+  }
+
+  .glow-border-hover:hover {
+    box-shadow: 0 0 0 1px rgba(0, 217, 255, 0.6), 0 0 30px rgba(0, 217, 255, 0.4);
+  }
+
+  .mask-gradient {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 10px 40px -10px rgba(0, 217, 255, 0.3), 0 0 20px rgba(0, 217, 255, 0.1);
+  }
+}
+
+/* Cinematic Grain Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #72C8C2;
+}
