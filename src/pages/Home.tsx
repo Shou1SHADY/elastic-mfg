@@ -22,7 +22,7 @@ export const Home: React.FC = () => {
             {/* Scroll Velocity Section */}
             <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-20 bg-elastic-black">
                 <ScrollVelocityContainer className="text-4xl font-bold tracking-[-0.02em] md:text-7xl md:leading-[5rem]">
-                    <ScrollVelocityRow baseVelocity={8} direction={1}>
+                    <ScrollVelocityRow baseVelocity={5} direction={1}>
                         <span className="mx-4">Precision Manufacturing</span>
                         <span className="mx-4">•</span>
                         <span className="mx-4">Advanced Production</span>
@@ -36,7 +36,7 @@ export const Home: React.FC = () => {
                         <span className="mx-4">Advanced Production</span>
                         <span className="mx-4">•</span>
                     </ScrollVelocityRow>
-                    <ScrollVelocityRow baseVelocity={8} direction={-1}>
+                    <ScrollVelocityRow baseVelocity={5} direction={-1}>
                         <span className="mx-4 text-gradient">Scale & Speed</span>
                         <span className="mx-4">•</span>
                         <span className="mx-4 text-gradient">Custom Solutions</span>

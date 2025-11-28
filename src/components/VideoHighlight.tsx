@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -10,6 +10,28 @@ export const VideoHighlight: React.FC = () => {
     const videoWrapperRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const textContentRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [showTooltip, setShowTooltip] = useState(false);
+
+    const handleVideoClick = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    const handleVideoMouseEnter = () => {
+        setShowTooltip(true);
+    };
+
+    const handleVideoMouseLeave = () => {
+        setShowTooltip(false);
+    };
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -59,18 +81,36 @@ export const VideoHighlight: React.FC = () => {
                     {/* Parallax Wrapper */}
                     <div ref={videoWrapperRef} className="absolute inset-0 h-[120%] -top-[10%] w-full">
                         <video
+                            ref={videoRef}
                             autoPlay
                             muted
                             loop
                             playsInline
                             poster="https://images.pexels.com/photos/3195394/pexels-photo-3195394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-1000 scale-105 group-hover:scale-100 filter contrast-125 grayscale"
+                            className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-all duration-1000 scale-105 group-hover:scale-100 filter contrast-125 grayscale cursor-pointer"
                             src="https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4"
+                            onClick={handleVideoClick}
+                            onMouseEnter={handleVideoMouseEnter}
+                            onMouseLeave={handleVideoMouseLeave}
                         />
-                        {/* Vignette & Art Overlays */}
+                        {/* Vignette & Art Overlays - moved to be non-blocking */}
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.8)_100%)] pointer-events-none"></div>
                         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent pointer-events-none"></div>
                         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoNHYxSDB6IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-20 pointer-events-none"></div>
+                    </div>
+
+                    {/* Play/Pause Indicator */}
+                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'} pointer-events-none`}>
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
+                            <div className="w-0 h-0 border-l-[12px] border-l-white border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
+                        </div>
+                    </div>
+
+                    {/* Tooltip */}
+                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full mt-4 transition-all duration-300 ${showTooltip ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} pointer-events-none`}>
+                        <div className="bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-2 rounded-lg border border-white/20">
+                            {isPlaying ? 'Click to pause' : 'Click to play'}
+                        </div>
                     </div>
 
                     {/* Artistic HUD Elements */}

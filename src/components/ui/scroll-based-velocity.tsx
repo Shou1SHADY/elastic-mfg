@@ -1,4 +1,3 @@
-"use client"
 import React, { useContext, useEffect, useRef, useState } from "react"
 import {
   motion,
@@ -10,7 +9,8 @@ import {
   useVelocity,
 } from "motion/react"
 import type { MotionValue } from "motion/react"
-import { cn } from "../../lib/utils"
+
+import { cn } from "@/lib/utils"
 
 interface ScrollVelocityRowProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
@@ -78,10 +78,12 @@ function ScrollVelocityRowImpl({
   const containerRef = useRef<HTMLDivElement>(null)
   const blockRef = useRef<HTMLDivElement>(null)
   const [numCopies, setNumCopies] = useState(1)
+
   const baseX = useMotionValue(0)
   const baseDirectionRef = useRef<number>(direction >= 0 ? 1 : -1)
   const currentDirectionRef = useRef<number>(direction >= 0 ? 1 : -1)
   const unitWidth = useMotionValue(0)
+
   const isInViewRef = useRef(true)
   const isPageVisibleRef = useRef(true)
   const prefersReducedMotionRef = useRef(false)
@@ -100,6 +102,7 @@ function ScrollVelocityRowImpl({
     }
 
     updateSizes()
+
     const ro = new ResizeObserver(updateSizes)
     ro.observe(container)
     ro.observe(block)
@@ -140,7 +143,6 @@ function ScrollVelocityRowImpl({
 
   useAnimationFrame((_, delta) => {
     if (!isInViewRef.current || !isPageVisibleRef.current) return
-
     const dt = delta / 1000
     const vf = velocityFactor.get()
     const absVf = Math.min(5, Math.abs(vf))
@@ -153,7 +155,6 @@ function ScrollVelocityRowImpl({
 
     const bw = unitWidth.get() || 0
     if (bw <= 0) return
-
     const pixelsPerSecond = (bw * baseVelocity) / 100
     const moveBy =
       currentDirectionRef.current * pixelsPerSecond * speedMultiplier * dt
@@ -197,7 +198,6 @@ function ScrollVelocityRowLocal(props: ScrollVelocityRowProps) {
     const magnitude = Math.min(5, (Math.abs(v) / 1000) * 5)
     return sign * magnitude
   })
-
   return (
     <ScrollVelocityRowImpl {...props} velocityFactor={localVelocityFactor} />
   )
