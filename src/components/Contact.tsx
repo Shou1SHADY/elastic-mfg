@@ -48,8 +48,8 @@ export const Contact: React.FC = () => {
                                 <div className="w-2 h-2 border border-elastic-accent rotate-45"></div>
                                 <span className="text-elastic-accent font-mono text-xs uppercase tracking-widest">Initialize</span>
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">Start Project</h2>
-                            <p className="text-zinc-400 text-sm leading-relaxed mb-8">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">Start Project</h2>
+                            <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed mb-8">
                                 Secure terminal for project initiation. Our engineering team reviews all specifications within 24 hours.
                             </p>
                         </div>

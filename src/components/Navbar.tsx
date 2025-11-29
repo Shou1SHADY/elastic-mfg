@@ -164,7 +164,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div ref={logoRef} className="flex-shrink-0 pl-4 pr-6">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
               <img src="/logo.png" alt="Elastic MFG" className="h-12 md:h-14 w-auto object-contain" />
             </Link>
           </div>
@@ -226,14 +226,7 @@ export const Navbar: React.FC = () => {
           mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         )}
       >
-        <div className="absolute top-5 right-5">
-          <button
-            className="rounded-full border border-white/20 p-2 text-white"
-            onClick={toggleMobileMenu}
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
+
 
         <div className="flex h-full flex-col items-center justify-center space-y-10">
           {navLinks.map((link) => (

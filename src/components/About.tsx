@@ -8,11 +8,11 @@ export const About: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id={SectionId.ABOUT} ref={sectionRef} className="pt-6 md:pt-8 pb-16 md:pb-20 bg-[#020617] relative overflow-hidden rounded-3xl">
+    <section id={SectionId.ABOUT} ref={sectionRef} className="pt-32 md:pt-32 pb-12 md:pb-20 bg-[#020617] relative overflow-hidden">
       {/* Subtle neutral background texture */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full px-6 md:px-12 relative z-10">
 
         {/* Top banner: visual intro for About */}
         <motion.div
@@ -28,10 +28,10 @@ export const About: React.FC = () => {
                 <span className="h-px w-10 bg-gradient-to-r from-elastic-accent to-transparent" />
                 <span>About Elastic MFG</span>
               </div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">
                 Design partners for modern physical brands.
               </h1>
-              <p className="text-zinc-400 text-sm md:text-base max-w-xl leading-relaxed">
+              <p className="text-zinc-400 text-xs sm:text-sm md:text-base max-w-xl leading-relaxed">
                 We help studios and teams turn vector artwork into production-ready rubber systems—without sacrificing
                 fidelity, durability, or delivery windows.
               </p>
@@ -81,10 +81,10 @@ export const About: React.FC = () => {
                 <span className="h-px w-10 bg-gradient-to-r from-elastic-accent to-transparent"></span>
                 <span className="text-elastic-accent font-mono text-xs uppercase tracking-[0.2em]">Capabilities</span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
                 Engineering The <span className="text-gradient">Intangible</span>
               </h2>
-              <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl">
+              <p className="text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl">
                 We sit at the intersection of heavy industry and delicate art.
                 Using advanced production pipelines, we translate vector data into tactile, high-fidelity physical goods.
               </p>

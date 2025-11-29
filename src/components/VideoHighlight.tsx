@@ -77,7 +77,7 @@ export const VideoHighlight: React.FC = () => {
             <div className="flex flex-col lg:flex-row h-full relative z-10">
 
                 {/* Video Side (65%) */}
-                <div className="w-full lg:w-[65%] relative overflow-hidden h-[40vh] lg:h-full border-r border-white/5 bg-[#141923] group order-1 lg:order-1 shadow-[0_25px_80px_rgba(0,0,0,0.6)]">
+                <div className="w-full lg:w-[65%] relative overflow-hidden h-[60vh] lg:h-full border-r border-white/5 bg-[#141923] group order-1 lg:order-1 shadow-[0_25px_80px_rgba(0,0,0,0.6)]">
                     {/* Parallax Wrapper */}
                     <div ref={videoWrapperRef} className="absolute inset-0 h-[120%] -top-[10%] w-full">
                         <video

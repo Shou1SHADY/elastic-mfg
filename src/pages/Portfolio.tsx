@@ -14,7 +14,7 @@ export const Portfolio: React.FC = () => {
 
         // Staggered portfolio items animation
         const portfolioItems = containerRef.current.querySelectorAll('.portfolio-item');
-        
+
         gsap.fromTo(portfolioItems,
             {
                 opacity: 0,
@@ -56,7 +56,7 @@ export const Portfolio: React.FC = () => {
 
         // Filter tabs animation
         const filterTabs = containerRef.current.querySelectorAll('.filter-tab');
-        
+
         filterTabs.forEach((tab, index) => {
             gsap.fromTo(tab,
                 {
@@ -116,7 +116,7 @@ export const Portfolio: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="pt-20"
+            className=""
         >
             <PortfolioComponent />
         </motion.div>

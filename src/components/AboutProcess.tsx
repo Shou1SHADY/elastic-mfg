@@ -7,7 +7,7 @@ export const AboutProcess: React.FC = () => {
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.7, ease: 'easeOut' }}
                 className="grid grid-cols-1 lg:grid-cols-[1.4fr,2fr] gap-10 items-start"
             >
@@ -89,7 +89,7 @@ export const AboutProcess: React.FC = () => {
                             key={step.label}
                             initial={{ opacity: 0, y: 40, rotateX: -15 }}
                             whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                            viewport={{ once: true, amount: 0.3 }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.23, 1, 0.32, 1] }}
                             whileHover={{ y: -8, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}

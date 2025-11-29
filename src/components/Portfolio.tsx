@@ -169,7 +169,7 @@ export const Portfolio: React.FC = () => {
       {/* Main content above grid */}
       <section
         id={SectionId.PORTFOLIO}
-        className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16"
+        className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 pt-32"
       >
         {/* Image + Text Showcase Section */}
         <motion.div
@@ -196,10 +196,10 @@ export const Portfolio: React.FC = () => {
                 <span className="h-px w-8 bg-gradient-to-r from-elastic-accent to-transparent" />
                 <span>Capability</span>
               </div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">
                 Precision at Scale.
               </h3>
-              <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-lg">
+              <p className="text-zinc-400 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg">
                 From single prototypes to 500k+ monthly runs, our production lines are built for consistency.
                 Every batch is optically verified, hand‑finished, and shipped on time.
               </p>
@@ -224,7 +224,7 @@ export const Portfolio: React.FC = () => {
               <span className="h-px w-10 bg-gradient-to-r from-elastic-accent to-transparent"></span>
               <span className="text-elastic-accent font-mono text-xs uppercase tracking-[0.2em]">Archive</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
               Selected <span className="text-gradient">Works</span>
             </h2>
           </div>

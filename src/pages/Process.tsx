@@ -40,7 +40,7 @@ export const Process: React.FC = () => {
 
         // Process steps staggered animation
         const processSteps = containerRef.current.querySelectorAll('.process-step');
-        
+
         processSteps.forEach((step, index) => {
             // Create different entrance animations for each step
             const directions = [
@@ -51,9 +51,9 @@ export const Process: React.FC = () => {
                 { x: -60, rotation: -2 },
                 { x: 60, rotation: 2 }
             ];
-            
+
             const dir = directions[index % directions.length];
-            
+
             gsap.fromTo(step,
                 {
                     opacity: 0,
@@ -97,7 +97,7 @@ export const Process: React.FC = () => {
 
         // Number animations
         const stepNumbers = containerRef.current.querySelectorAll('.step-number');
-        
+
         gsap.fromTo(stepNumbers,
             {
                 opacity: 0,
@@ -121,7 +121,7 @@ export const Process: React.FC = () => {
 
         // Connecting lines animation
         const connectingLines = containerRef.current.querySelectorAll('.connecting-line');
-        
+
         connectingLines.forEach((line, index) => {
             gsap.fromTo(line,
                 {
@@ -156,7 +156,7 @@ export const Process: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="pt-20"
+            className=""
         >
             <ProcessComponent />
         </motion.div>

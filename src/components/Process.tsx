@@ -35,7 +35,7 @@ export const Process: React.FC = () => {
   }, []);
 
   return (
-    <section id={SectionId.PROCESS} ref={containerRef} className="pt-6 md:pt-8 pb-16 md:pb-20 bg-elastic-darker relative overflow-hidden border-y border-white/5">
+    <section id={SectionId.PROCESS} ref={containerRef} className="pt-32 md:pt-32 pb-16 md:pb-20 bg-elastic-darker relative overflow-hidden border-y border-white/5">
       {/* Top banner: visual intro for Process */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}

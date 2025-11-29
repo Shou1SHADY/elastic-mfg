@@ -9,7 +9,7 @@ export const Layout: React.FC = () => {
             {/* Content */}
             <div className="flex flex-col min-h-screen">
                 <Navbar />
-                <main className="flex-grow pt-10">
+                <main className="flex-grow ">
                     <Outlet />
                 </main>
                 <Footer />
