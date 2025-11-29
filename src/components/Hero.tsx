@@ -41,14 +41,26 @@ export const Hero: React.FC = () => {
 
   useEffect(() => {
     const resize = () => {
-      if (canvasRef.current) {
-        canvasRef.current.width = window.innerWidth;
-        canvasRef.current.height = window.innerHeight;
+      if (canvasRef.current && containerRef.current) {
+        // Use container dimensions instead of window to prevent ScrollTrigger recalculation
+        const container = containerRef.current;
+        canvasRef.current.width = container.offsetWidth;
+        canvasRef.current.height = container.offsetHeight;
         render();
       }
     };
-    window.addEventListener('resize', resize);
+    
+    // Initial resize
     resize();
+    
+    // Use ResizeObserver on container instead of window resize listener
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+    });
+    
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
 
     const imgs: HTMLImageElement[] = [];
     for (let i = 0; i < frameCount; i++) {
@@ -59,7 +71,9 @@ export const Hero: React.FC = () => {
     }
     imagesRef.current = imgs;
 
-    return () => window.removeEventListener('resize', resize);
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -86,7 +100,8 @@ export const Hero: React.FC = () => {
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
-          // Keep default invalidateOnRefresh true for proper refresh handling
+          // Prevent ScrollTrigger from recalculating on refresh to avoid re-centering
+          invalidateOnRefresh: false,
           onUpdate: () => render()
         }
       });

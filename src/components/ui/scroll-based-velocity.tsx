@@ -34,13 +34,20 @@ export function ScrollVelocityContainer({
 }: React.HTMLAttributes<HTMLDivElement>) {
   const { scrollY } = useScroll()
   const scrollVelocity = useVelocity(scrollY)
+  
+  // Enhanced mobile smoothing with different spring configs
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
   const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
+    damping: isMobile ? 80 : 50, // Higher damping for mobile to reduce jitter
+    stiffness: isMobile ? 300 : 400, // Lower stiffness for smoother mobile response
+    restDelta: 0.001, // Better precision for stopping
   })
+  
   const velocityFactor = useTransform(smoothVelocity, (v) => {
     const sign = v < 0 ? -1 : 1
-    const magnitude = Math.min(5, (Math.abs(v) / 1000) * 5)
+    // Reduce velocity sensitivity on mobile to prevent overreaction
+    const mobileMultiplier = isMobile ? 0.7 : 1.0
+    const magnitude = Math.min(5, (Math.abs(v) / 1000) * 5 * mobileMultiplier)
     return sign * magnitude
   })
 
@@ -83,15 +90,21 @@ function ScrollVelocityRowImpl({
   const baseDirectionRef = useRef<number>(direction >= 0 ? 1 : -1)
   const currentDirectionRef = useRef<number>(direction >= 0 ? 1 : -1)
   const unitWidth = useMotionValue(0)
+  const lastVelocityRef = useRef<number>(0)
+  const directionChangeDebounceRef = useRef<number>(0)
 
   const isInViewRef = useRef(true)
   const isPageVisibleRef = useRef(true)
   const prefersReducedMotionRef = useRef(false)
+  const isMobileRef = useRef(false)
 
   useEffect(() => {
     const container = containerRef.current
     const block = blockRef.current
     if (!container || !block) return
+
+    // Detect mobile device
+    isMobileRef.current = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
     const updateSizes = () => {
       const cw = container.offsetWidth || 0
@@ -146,19 +159,53 @@ function ScrollVelocityRowImpl({
     const dt = delta / 1000
     const vf = velocityFactor.get()
     const absVf = Math.min(5, Math.abs(vf))
+    
+    // Apply mobile-specific smoothing
     const speedMultiplier = prefersReducedMotionRef.current ? 1 : 1 + absVf
 
-    if (absVf > 0.1) {
+    // Improved direction change handling with debouncing
+    const currentTime = Date.now()
+    const velocityThreshold = isMobileRef.current ? 0.05 : 0.1
+    
+    if (absVf > velocityThreshold) {
       const scrollDirection = vf >= 0 ? 1 : -1
-      currentDirectionRef.current = baseDirectionRef.current * scrollDirection
+      
+      // Debounce direction changes on mobile to prevent jitter
+      if (isMobileRef.current) {
+        if (currentTime - directionChangeDebounceRef.current > 100) { // 100ms debounce
+          const lastDirection = lastVelocityRef.current >= 0 ? 1 : -1
+          if (scrollDirection !== lastDirection) {
+            currentDirectionRef.current = baseDirectionRef.current * scrollDirection
+            directionChangeDebounceRef.current = currentTime
+          }
+        }
+      } else {
+        currentDirectionRef.current = baseDirectionRef.current * scrollDirection
+      }
     }
+    
+    lastVelocityRef.current = vf
 
     const bw = unitWidth.get() || 0
     if (bw <= 0) return
-    const pixelsPerSecond = (bw * baseVelocity) / 100
-    const moveBy =
-      currentDirectionRef.current * pixelsPerSecond * speedMultiplier * dt
-    baseX.set(baseX.get() + moveBy)
+    
+    // Reduce base velocity on mobile for smoother experience
+    const adjustedBaseVelocity = isMobileRef.current ? baseVelocity * 0.7 : baseVelocity
+    const pixelsPerSecond = (bw * adjustedBaseVelocity) / 100
+    
+    // Apply smoother movement calculation
+    const moveBy = currentDirectionRef.current * pixelsPerSecond * speedMultiplier * dt
+    
+    // Use smooth transition on mobile to prevent jumps
+    if (isMobileRef.current) {
+      const currentX = baseX.get()
+      const targetX = currentX + moveBy
+      // Smooth interpolation to prevent sudden position changes
+      const smoothFactor = 0.8 // Adjust for desired smoothness
+      baseX.set(currentX + (targetX - currentX) * smoothFactor)
+    } else {
+      baseX.set(baseX.get() + moveBy)
+    }
   })
 
   return (
@@ -189,13 +236,19 @@ function ScrollVelocityRowImpl({
 function ScrollVelocityRowLocal(props: ScrollVelocityRowProps) {
   const { scrollY } = useScroll()
   const localVelocity = useVelocity(scrollY)
+  
+  // Use same mobile-optimized spring configuration
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
   const localSmoothVelocity = useSpring(localVelocity, {
-    damping: 50,
-    stiffness: 400,
+    damping: isMobile ? 80 : 50,
+    stiffness: isMobile ? 300 : 400,
+    restDelta: 0.001,
   })
+  
   const localVelocityFactor = useTransform(localSmoothVelocity, (v) => {
     const sign = v < 0 ? -1 : 1
-    const magnitude = Math.min(5, (Math.abs(v) / 1000) * 5)
+    const mobileMultiplier = isMobile ? 0.7 : 1.0
+    const magnitude = Math.min(5, (Math.abs(v) / 1000) * 5 * mobileMultiplier)
     return sign * magnitude
   })
   return (
