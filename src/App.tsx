@@ -8,6 +8,8 @@ import { Process } from './pages/Process.tsx';
 import { Portfolio } from './pages/Portfolio.tsx';
 import { Contact } from './pages/Contact.tsx';
 
+import { ScrollToTop } from './components/ScrollToTop';
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,6 +17,7 @@ function App() {
     <>
       {isLoading && <SplashScreen onComplete={() => setIsLoading(false)} />}
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
