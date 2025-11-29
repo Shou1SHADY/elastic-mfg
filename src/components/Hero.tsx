@@ -30,8 +30,8 @@ export const Hero: React.FC = () => {
 
     if (activeImg) {
       const canvas = canvasRef.current;
-      // Use contain logic to show full image without cropping
-      const scale = Math.min(canvas.width / activeImg.width, canvas.height / activeImg.height);
+      // Use contain logic to show full image without cropping, with slight scale adjustment
+      const scale = Math.min(canvas.width / activeImg.width, canvas.height / activeImg.height) * 0.95;
       const x = (canvas.width - activeImg.width * scale) / 2;
       const y = (canvas.height - activeImg.height * scale) / 2;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
