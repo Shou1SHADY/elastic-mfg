@@ -325,3 +325,57 @@ body::after {
 ::-webkit-scrollbar-thumb:hover {
   background: #72C8C2;
 }
+
+/* ----- Noise Layer ----- */
+.noise-layer {
+  background: url("/noise.png");
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  /* animation: noiseMove 0.2s infinite; */
+  /* Disabled for smoother effect */
+}
+
+@keyframes noiseMove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-2px, 1px);
+  }
+
+  40% {
+    transform: translate(1px, -2px);
+  }
+
+  60% {
+    transform: translate(-1px, 1px);
+  }
+
+  80% {
+    transform: translate(2px, 2px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ----- Scanline Layer ----- */
+.scanline-layer {
+  background: repeating-linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      rgba(0, 0, 0, 0) 2px);
+  animation: scanMove 6s linear infinite;
+}
+
+@keyframes scanMove {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 100vh;
+  }
+}
