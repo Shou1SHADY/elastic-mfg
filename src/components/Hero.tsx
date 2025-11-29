@@ -80,9 +80,13 @@ export const Hero: React.FC = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=300%",
+          // Extend the scroll length to allow full animation
+          end: "+=400%",
           scrub: 0.5,
           pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          // Keep default invalidateOnRefresh true for proper refresh handling
           onUpdate: () => render()
         }
       });
