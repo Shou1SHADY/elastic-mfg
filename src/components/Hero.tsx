@@ -64,6 +64,14 @@ export const Hero: React.FC = () => {
 
   useLayoutEffect(() => {
     if (!containerRef.current) return;
+
+    // Kill any existing ScrollTriggers first
+    ScrollTrigger.getAll().forEach(trigger => {
+      if (trigger.vars.trigger === containerRef.current) {
+        trigger.kill();
+      }
+    });
+
     const ctx = gsap.context(() => {
       gsap.to(sequence.current, {
         frame: frameCount - 1,
@@ -93,7 +101,14 @@ export const Hero: React.FC = () => {
       });
 
     }, containerRef);
-    return () => ctx.revert();
+
+    // Refresh ScrollTrigger after setup
+    ScrollTrigger.refresh();
+
+    return () => {
+      ctx.revert();
+      ScrollTrigger.refresh();
+    };
   }, []);
 
   const scrollToAbout = () => {
