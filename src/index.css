@@ -7,6 +7,7 @@
     scroll-behavior: smooth;
     background-color: #050505;
     font-family: 'Inter', sans-serif;
+    scrollbar-gutter: stable;
   }
 
   body {
@@ -17,13 +18,16 @@
 
   /* Global scrollbar hiding for mobile */
   @media (max-width: 768px) {
-    html, body, * {
+
+    html,
+    body,
+    * {
       scrollbar-width: none !important;
       -ms-overflow-style: none !important;
     }
-    
-    html::-webkit-scrollbar, 
-    body::-webkit-scrollbar, 
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
     *::-webkit-scrollbar {
       display: none !important;
       width: 0 !important;
@@ -48,6 +52,7 @@
 
   /* Prevent mobile zoom on input focus */
   @supports (-webkit-touch-callout: none) {
+
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -66,6 +71,7 @@
 
   /* Mobile-specific fixes */
   @media (max-width: 768px) {
+
     /* Prevent horizontal scroll */
     body {
       width: 100%;
@@ -80,10 +86,12 @@
       width: 0;
       height: 0;
     }
-    
+
     body {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
     }
 
     /* Hide scrollbar for all scrollable elements */
@@ -107,7 +115,8 @@
       user-select: none;
     }
 
-    input, textarea {
+    input,
+    textarea {
       -webkit-user-select: text;
       user-select: text;
       /* Ensure rounded borders on mobile */
