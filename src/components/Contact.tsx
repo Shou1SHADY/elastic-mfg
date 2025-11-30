@@ -36,7 +36,7 @@ export const Contact: React.FC = () => {
 
             {/* --- Content Container --- */}
             <div className="max-w-[1200px] mx-auto md:px-4 md:px-6 lg:px-10 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-12 bg-zinc-900/30 backdrop-blur-md md:border border-white/10 md:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
+                <div className="grid grid-cols-1 lg:grid-cols-12 bg-zinc-900/30 backdrop-blur-md md:border border-white/10 md:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl min-h-0">
 
                     {/* Left: Info Console */}
                     <div className="lg:col-span-5 p-5 md:p-8 lg:p-12 bg-zinc-900/60 lg:border-r border-white/5 flex flex-col justify-between relative overflow-hidden">
@@ -92,7 +92,7 @@ export const Contact: React.FC = () => {
                         {/* Right: Input Terminal */}
                         <div className="lg:col-span-7 p-5 md:p-8 lg:p-12 bg-[#0a0a0a]/60 relative flex items-center justify-center">
                             <div className="w-full max-w-lg">
-                                <form className="space-y-5 md:space-y-6" onSubmit={handleSubmit}>
+                                <form className="space-y-5 md:space-y-6" onSubmit={handleSubmit} noValidate>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
                                     {/* Name Input */}
@@ -100,19 +100,23 @@ export const Contact: React.FC = () => {
                                         <input
                                             type="text"
                                             id="name"
-                                            className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg md:rounded-xl px-4 md:px-5 py-3.5 md:py-4 text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent"
+                                            className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg px-4 md:px-5 py-3.5 md:py-4 text-base md:text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent touch-action-manipulation"
                                             placeholder="Name"
                                             value={formData.name}
                                             onChange={e => setFormData({ ...formData, name: e.target.value })}
                                             disabled={formState !== 'idle'}
+                                            autoComplete="name"
+                                            autoCapitalize="words"
+                                            spellCheck="false"
+                                            inputMode="text"
                                         />
                                         <label
                                             htmlFor="name"
-                                            className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all 
+                                            className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all z-10
                                 peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 peer-placeholder-shown:top-4 
-                                peer-focus:-top-3 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
+                                peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
                                 pointer-events-none 
-                                peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
+                                peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
                                         >
                                             Full Name
                                         </label>
@@ -123,19 +127,23 @@ export const Contact: React.FC = () => {
                                         <input
                                             type="text"
                                             id="company"
-                                            className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg md:rounded-xl px-4 md:px-5 py-3.5 md:py-4 text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent"
+                                            className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg px-4 md:px-5 py-3.5 md:py-4 text-base md:text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent touch-action-manipulation"
                                             placeholder="Company"
                                             value={formData.company}
                                             onChange={e => setFormData({ ...formData, company: e.target.value })}
                                             disabled={formState !== 'idle'}
+                                            autoComplete="organization"
+                                            autoCapitalize="words"
+                                            spellCheck="false"
+                                            inputMode="text"
                                         />
                                         <label
                                             htmlFor="company"
-                                            className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all 
+                                            className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all z-10
                                 peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 peer-placeholder-shown:top-4 
-                                peer-focus:-top-3 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
+                                peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
                                 pointer-events-none 
-                                peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
+                                peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
                                         >
                                             Company / Org
                                         </label>
@@ -147,19 +155,22 @@ export const Contact: React.FC = () => {
                                     <input
                                         type="email"
                                         id="email"
-                                        className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg md:rounded-xl px-4 md:px-5 py-3.5 md:py-4 text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent"
+                                        className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg px-4 md:px-5 py-3.5 md:py-4 text-base md:text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent touch-action-manipulation"
                                         placeholder="Email"
                                         value={formData.email}
                                         onChange={e => setFormData({ ...formData, email: e.target.value })}
                                         disabled={formState !== 'idle'}
+                                        autoComplete="email"
+                                        spellCheck="false"
+                                        inputMode="email"
                                     />
                                     <label
                                         htmlFor="email"
-                                        className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all 
+                                        className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all z-10
                                 peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 peer-placeholder-shown:top-4 
-                                peer-focus:-top-3 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
+                                peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
                                 pointer-events-none 
-                                peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
+                                peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
                                     >
                                         Email Address
                                     </label>
@@ -169,19 +180,22 @@ export const Contact: React.FC = () => {
                                 <div className="relative group">
                                     <textarea
                                         id="details"
-                                        className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg md:rounded-xl px-4 md:px-5 py-3.5 md:py-4 text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent h-28 md:h-32 resize-none"
+                                        className="peer w-full bg-zinc-900/50 border border-white/10 rounded-lg px-4 md:px-5 py-3.5 md:py-4 text-base md:text-sm text-white focus:border-elastic-secondary focus:ring-1 focus:ring-elastic-secondary focus:shadow-[0_0_20px_rgba(93,156,201,0.2)] outline-none transition-all placeholder-transparent h-28 md:h-32 resize-none touch-action-manipulation"
                                         placeholder="Details"
                                         value={formData.details}
                                         onChange={e => setFormData({ ...formData, details: e.target.value })}
                                         disabled={formState !== 'idle'}
+                                        autoComplete="off"
+                                        spellCheck="true"
+                                        rows={4}
                                     ></textarea>
                                     <label
                                         htmlFor="details"
-                                        className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all 
+                                        className="absolute left-4 md:left-5 top-3.5 md:top-4 text-zinc-500 text-xs transition-all z-10
                                 peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 peer-placeholder-shown:top-4 
-                                peer-focus:-top-3 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
+                                peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:text-elastic-secondary peer-focus:uppercase peer-focus:tracking-wider peer-focus:bg-[#0a0a0a] peer-focus:px-1
                                 pointer-events-none 
-                                peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
+                                peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-zinc-400 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:bg-[#0a0a0a] peer-[:not(:placeholder-shown)]:px-1"
                                     >
                                         Project Parameters
                                     </label>
