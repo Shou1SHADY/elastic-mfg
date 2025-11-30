@@ -118,6 +118,10 @@ export const Hero: React.FC = () => {
     const container = containerRef.current;
     if (!container) return;
 
+    // Force scroll to top immediately on mount to prevent "already scrolled" state
+    window.scrollTo(0, 0);
+    ScrollTrigger.clearScrollMemory();
+
     const ctx = gsap.context(() => {
       gsap.to(sequence.current, {
         frame: frameCount - 1,
