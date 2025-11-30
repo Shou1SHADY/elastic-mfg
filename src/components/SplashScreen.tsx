@@ -22,13 +22,27 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
             img.src = src;
         });
 
+        // Prevent scrolling while splash screen is visible
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+
         // Total duration: 2.5s (2500ms)
         const timer = setTimeout(() => {
             setIsVisible(false);
-            setTimeout(onComplete, 800);
+            setTimeout(() => {
+                // Restore scrolling after splash completes
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                onComplete();
+            }, 800);
         }, 2500);
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer);
+            // Restore scrolling in case of unmount
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        };
     }, [onComplete]);
 
     return (
