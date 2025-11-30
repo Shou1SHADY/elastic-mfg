@@ -150,7 +150,12 @@ export const Hero: React.FC = () => {
       });
     }, containerRef);
 
-    ScrollTrigger.refresh();
+    // Refresh ScrollTrigger after a short delay to ensure layout is stable
+    // This fixes the issue where the sequence is static when navigating back
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+      render();
+    }, 100);
 
     // Revalidate on tab restore or window focus
     const revalidate = () => {
