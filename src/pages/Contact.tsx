@@ -41,16 +41,16 @@ export const Contact: React.FC = () => {
 
         // Contact info cards with staggered entrance
         const infoCards = containerRef.current.querySelectorAll('.info-card');
-        
+
         infoCards.forEach((card, index) => {
             const directions = [
                 { x: -80, y: 40, rotation: -8 },
                 { x: 0, y: 60, rotation: 0 },
                 { x: 80, y: 40, rotation: 8 }
             ];
-            
+
             const dir = directions[index % directions.length];
-            
+
             gsap.fromTo(card,
                 {
                     opacity: 0,
@@ -79,7 +79,7 @@ export const Contact: React.FC = () => {
 
         // Form fields animation
         const formFields = containerRef.current.querySelectorAll('.form-field');
-        
+
         formFields.forEach((field, index) => {
             gsap.fromTo(field,
                 {
@@ -105,7 +105,7 @@ export const Contact: React.FC = () => {
 
         // Social links animation
         const socialLinks = containerRef.current.querySelectorAll('.social-link');
-        
+
         socialLinks.forEach((link, index) => {
             gsap.fromTo(link,
                 {
@@ -157,7 +157,7 @@ export const Contact: React.FC = () => {
 
         // Parallax effect for background elements
         const bgElements = containerRef.current.querySelectorAll('.bg-element');
-        
+
         bgElements.forEach((element, index) => {
             gsap.to(element, {
                 y: -50 - (index * 20),
@@ -183,7 +183,7 @@ export const Contact: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="pt-20 relative min-h-screen"
+            className="pt-4 relative min-h-screen"
         >
             {/* Terminal Grid Background */}
             <TerminalGrid
@@ -192,7 +192,7 @@ export const Contact: React.FC = () => {
                 density={0}
                 className="fixed top-0 left-0 w-full h-full"
             />
-            
+
             {/* Contact Content */}
             <div className="relative z-10">
                 <ContactComponent />

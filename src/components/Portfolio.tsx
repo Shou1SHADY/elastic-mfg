@@ -169,20 +169,20 @@ export const Portfolio: React.FC = () => {
       {/* Main content above grid */}
       <section
         id={SectionId.PORTFOLIO}
-        className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 pt-40 md:pt-32
+        className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 pt-24 md:pt-32
         "
       >
         {/* Image + Text Showcase Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="mb-12 rounded-3xl overflow-hidden border border-white/10 bg-black/10 backdrop-blur-sm"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Image side */}
-            <div className="relative aspect-[4/3] lg:aspect-square overflow-hidden">
+            <div className="relative aspect-[4/3] lg:aspect-[3/2] overflow-hidden">
               <img
                 src="/images/collection.jpg"
                 alt="Manufacturing precision"
@@ -285,7 +285,7 @@ export const Portfolio: React.FC = () => {
             </div>
 
             {/* Portfolio Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <AnimatePresence>
                 {filteredProducts.map((product, index) => (
                   <TiltCard

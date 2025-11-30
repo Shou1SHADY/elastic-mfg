@@ -35,10 +35,10 @@ export const Footer: React.FC = () => {
          <div className="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-20 relative z-10">
 
             {/* Main Footer Content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-16 justify-items-center lg:justify-items-start">
 
                {/* Brand Section */}
-               <div className="lg:col-span-2">
+               <div className="col-span-2">
                   <motion.div
                      initial={{ opacity: 0, y: 20 }}
                      whileInView={{ opacity: 1, y: 0 }}

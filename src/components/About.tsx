@@ -8,7 +8,7 @@ export const About: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id={SectionId.ABOUT} ref={sectionRef} className="pt-32 md:pt-32 pb-12 md:pb-20 bg-[#020617] relative overflow-hidden">
+    <section id={SectionId.ABOUT} ref={sectionRef} className="pt-32 md:pt-48 pb-12 md:pb-20 bg-[#020617] relative overflow-hidden">
       {/* Subtle neutral background texture */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
 
@@ -18,41 +18,36 @@ export const About: React.FC = () => {
 
 
 
-        {/* Inner panel: subtle slate above band */}
-        <div className="bg-[#0b1220] border border-white/10 rounded-3xl px-6 md:px-10 lg:px-12 py-10 md:py-14">
+        {/* Header with Decorative Border */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 relative"
+        >
+          {/* Decorative Corner Accents */}
+          <div className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-elastic-accent"></div>
+          <div className="absolute -top-2 -right-2 w-8 h-8 border-r-2 border-t-2 border-elastic-highlight"></div>
 
-          {/* Header with Decorative Border */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 relative"
-          >
-            {/* Decorative Corner Accents */}
-            <div className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-elastic-accent"></div>
-            <div className="absolute -top-2 -right-2 w-8 h-8 border-r-2 border-t-2 border-elastic-highlight"></div>
-
-            <div className="text-center mx-auto max-w-4xl">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="h-px w-10 bg-gradient-to-r from-transparent via-elastic-accent to-transparent"></span>
-                <span className="text-elastic-accent font-mono text-xs uppercase tracking-[0.2em]">Capabilities</span>
-                <span className="h-px w-10 bg-gradient-to-r from-transparent via-elastic-accent to-transparent"></span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
-                Engineering The <span className="text-gradient">Intangible</span>
-              </h2>
-              <p className="text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                We sit at the intersection of heavy industry and delicate art.
-                Using advanced production pipelines, we translate vector data into tactile, high-fidelity physical goods.
-              </p>
+          <div className="text-center mx-auto max-w-4xl">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="h-px w-10 bg-gradient-to-r from-transparent via-elastic-accent to-transparent"></span>
+              <span className="text-elastic-accent font-mono text-xs uppercase tracking-[0.2em]">Capabilities</span>
+              <span className="h-px w-10 bg-gradient-to-r from-transparent via-elastic-accent to-transparent"></span>
             </div>
-          </motion.div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
+              Engineering The <span className="text-gradient">Intangible</span>
+            </h2>
+            <p className="text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              We sit at the intersection of heavy industry and delicate art.
+              Using advanced production pipelines, we translate vector data into tactile, high-fidelity physical goods.
+            </p>
+          </div>
+        </motion.div>
 
-          {/* Feature Cards Grid - Using New Component */}
-          <AboutFeatures />
-
-        </div>
+        {/* Feature Cards Grid - Using New Component */}
+        <AboutFeatures />
       </div>
 
       {/* Separator between main panel and secondary section */}

@@ -39,10 +39,9 @@ export const Process: React.FC = () => {
       {/* Top banner: visual intro for Process */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="mb-10 md:mb-12 rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#020617] via-[#030b1a] to-[#020617] px-6 md:px-10 lg:px-12 py-12 md:py-16 text-center"
+        className="mb-10 md:mb-12  overflow-hidden border border-white/10 bg-gradient-to-br from-[#020617] via-[#030b1a] to-[#020617] px-6 md:px-10 lg:px-12 py-12 md:py-16 text-center"
       >
         <div className="flex flex-col items-center space-y-4 md:space-y-6 max-w-4xl mx-auto">
           <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.3em] text-elastic-accent/80">
@@ -69,8 +68,8 @@ export const Process: React.FC = () => {
         {/* Header with Top Border Accent */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="mb-12 relative"
         >
           {/* Top accent bar */}

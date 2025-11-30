@@ -74,7 +74,7 @@ export const AboutFeatures: React.FC = () => {
                     whileHover={{ y: -8 }}
                 >
                     {/* Visual Background Section */}
-                    <div className={`relative h-40 overflow-hidden flex items-center justify-center
+                    <div className={`relative h-28 overflow-hidden flex items-center justify-center
                 ${idx === 0 ? 'bg-gradient-to-br from-elastic-accent/20 via-elastic-accent/5 to-transparent' : ''}
                 ${idx === 1 ? 'bg-gradient-to-br from-elastic-secondary/20 via-elastic-secondary/5 to-transparent' : ''}
                 ${idx === 2 ? 'bg-gradient-to-br from-elastic-highlight/20 via-elastic-highlight/5 to-transparent' : ''}`}>
@@ -84,21 +84,21 @@ export const AboutFeatures: React.FC = () => {
                         <div className="absolute inset-0 bg-grid-pattern opacity-[0.05]" />
 
                         {/* Large Icon in Header */}
-                        <div className={`feature-icon relative w-20 h-20 rounded-2xl flex items-center justify-center
+                        <div className={`feature-icon relative w-16 h-16 rounded-xl flex items-center justify-center
                             transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-3
                             ${idx === 0 ? 'text-elastic-accent bg-elastic-accent/10' : ''}
                             ${idx === 1 ? 'text-elastic-secondary bg-elastic-secondary/10' : ''}
                             ${idx === 2 ? 'text-elastic-highlight bg-elastic-highlight/10' : ''}
                         `}>
-                            <feature.icon strokeWidth={1.5} className="w-10 h-10" />
+                            <feature.icon strokeWidth={1.5} className="w-8 h-8" />
                         </div>
                     </div>
 
                     {/* Content Section */}
-                    <div className="p-8 pt-6 text-center">
+                    <div className="p-6 pt-5 text-center">
 
                         {/* Text Content */}
-                        <h3 className="text-xl text-white font-bold mb-3 group-hover:text-gradient transition-all duration-300">
+                        <h3 className="text-lg text-white font-bold mb-2.5 group-hover:text-gradient transition-all duration-300">
                             {feature.title}
                         </h3>
                         <p className="text-zinc-400 text-sm leading-relaxed group-hover:text-zinc-300 transition-colors duration-300">
