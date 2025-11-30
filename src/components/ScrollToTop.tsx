@@ -14,15 +14,27 @@ export const ScrollToTop = () => {
         const originalScrollBehavior = document.documentElement.style.scrollBehavior;
         document.documentElement.style.scrollBehavior = 'auto';
 
+        // 1. Immediate reset
         window.scrollTo(0, 0);
 
-        // Restore smooth scrolling after a brief delay to ensure the scroll happened instantly
-        // Using setTimeout ensures it runs after the current paint cycle
-        const timeoutId = setTimeout(() => {
-            document.documentElement.style.scrollBehavior = originalScrollBehavior;
-        }, 0);
+        // 2. Reset on next frame (catches some layout shifts)
+        const rafId = requestAnimationFrame(() => {
+            window.scrollTo(0, 0);
+        });
 
-        return () => clearTimeout(timeoutId);
+        // 3. Reset after a small delay (catches async loading/production timing issues)
+        const timeoutId = setTimeout(() => {
+            window.scrollTo(0, 0);
+            // Restore smooth scrolling only after we are sure we are at the top
+            document.documentElement.style.scrollBehavior = originalScrollBehavior;
+        }, 50);
+
+        return () => {
+            cancelAnimationFrame(rafId);
+            clearTimeout(timeoutId);
+            // Ensure we restore behavior if component unmounts early
+            document.documentElement.style.scrollBehavior = originalScrollBehavior;
+        };
     }, [pathname]);
 
     return null;
