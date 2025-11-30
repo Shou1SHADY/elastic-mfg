@@ -166,7 +166,7 @@ export const Portfolio: React.FC = () => {
         className="absolute inset-0 w-full h-full z-0"
       />
 
-      {/* Main content above grid */}
+      {/* Maind content above grid */}
       <section
         id={SectionId.PORTFOLIO}
         className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 pt-24 md:pt-32
