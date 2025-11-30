@@ -15,51 +15,8 @@ export const About: React.FC = () => {
       <div className="w-full px-6 md:px-12 relative z-10">
 
         {/* Top banner: visual intro for About */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="mb-10 md:mb-12 rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#020617] via-[#030b1a] to-[#020617]"
-        >
-          <div className="relative px-6 md:px-10 lg:px-12 py-8 md:py-10 flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center">
-            <div className="flex-1 space-y-3 md:space-y-4">
-              <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.3em] text-elastic-accent/80">
-                <span className="h-px w-10 bg-gradient-to-r from-elastic-accent to-transparent" />
-                <span>About Elastic MFG</span>
-              </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-                Design partners for modern physical brands.
-              </h1>
-              <p className="text-zinc-400 text-xs sm:text-sm md:text-base max-w-xl leading-relaxed">
-                We help studios and teams turn vector artwork into production-ready rubber systems—without sacrificing
-                fidelity, durability, or delivery windows.
-              </p>
-            </div>
 
-            <div className="w-full md:w-56 lg:w-64 flex md:justify-end">
-              <div className="relative w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-4 overflow-hidden">
-                <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-elastic-accent/10 blur-2xl" />
-                <div className="relative z-10 space-y-2 text-xs text-zinc-300 font-mono">
-                  <div className="flex items-center justify-between">
-                    <span className="uppercase tracking-[0.2em] text-zinc-500">Programs</span>
-                    <span className="text-sm font-semibold text-white">12 active</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="uppercase tracking-[0.2em] text-zinc-500">Regions</span>
-                    <span className="text-sm font-semibold text-white">3 hubs</span>
-                  </div>
-                  <div className="mt-2 h-1 w-full rounded-full bg-white/10 overflow-hidden">
-                    <div className="h-full w-3/4 bg-gradient-to-r from-elastic-accent to-elastic-secondary" />
-                  </div>
-                  <p className="text-[10px] text-zinc-500">
-                    Always-on production lanes tuned for small to mid-size runs.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+
 
         {/* Inner panel: subtle slate above band */}
         <div className="bg-[#0b1220] border border-white/10 rounded-3xl px-6 md:px-10 lg:px-12 py-10 md:py-14">
@@ -76,15 +33,16 @@ export const About: React.FC = () => {
             <div className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-elastic-accent"></div>
             <div className="absolute -top-2 -right-2 w-8 h-8 border-r-2 border-t-2 border-elastic-highlight"></div>
 
-            <div className="border-l-2 border-elastic-accent/30 pl-6">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="h-px w-10 bg-gradient-to-r from-elastic-accent to-transparent"></span>
+            <div className="text-center mx-auto max-w-4xl">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <span className="h-px w-10 bg-gradient-to-r from-transparent via-elastic-accent to-transparent"></span>
                 <span className="text-elastic-accent font-mono text-xs uppercase tracking-[0.2em]">Capabilities</span>
+                <span className="h-px w-10 bg-gradient-to-r from-transparent via-elastic-accent to-transparent"></span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
                 Engineering The <span className="text-gradient">Intangible</span>
               </h2>
-              <p className="text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl">
+              <p className="text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
                 We sit at the intersection of heavy industry and delicate art.
                 Using advanced production pipelines, we translate vector data into tactile, high-fidelity physical goods.
               </p>

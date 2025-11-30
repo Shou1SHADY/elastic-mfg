@@ -13,9 +13,7 @@ export const Hero: React.FC = () => {
   // Animation constants
   const frameCount = 147;
   const currentFrame = (index: number) => (
-    `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${(index + 1)
-      .toString()
-      .padStart(4, '0')}.jpg`
+    `/hero-sequence/${(index + 1).toString().padStart(4, '0')}.jpg`
   );
 
   const imagesRef = useRef<HTMLImageElement[]>([]);
@@ -37,9 +35,9 @@ export const Hero: React.FC = () => {
       img && img.complete
         ? img
         : imagesRef.current
-            .slice(0, sequence.current.frame)
-            .reverse()
-            .find(i => i && i.complete);
+          .slice(0, sequence.current.frame)
+          .reverse()
+          .find(i => i && i.complete);
 
     if (!activeImg) return;
 

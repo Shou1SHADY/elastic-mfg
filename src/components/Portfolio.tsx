@@ -59,7 +59,7 @@ const TiltCard = ({ product, onClick, index }: { product: Product; onClick: () =
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="group cursor-pointer relative rounded-2xl overflow-hidden
+      className=" group cursor-pointer relative rounded-2xl overflow-hidden
             bg-black/10 backdrop-blur-sm
             border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.5)]
             hover:border-elastic-accent/70 hover:shadow-glow-mint transition-colors duration-500"
@@ -169,7 +169,8 @@ export const Portfolio: React.FC = () => {
       {/* Main content above grid */}
       <section
         id={SectionId.PORTFOLIO}
-        className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 pt-32"
+        className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 pt-40 md:pt-32
+        "
       >
         {/* Image + Text Showcase Section */}
         <motion.div

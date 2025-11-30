@@ -67,6 +67,8 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                                 ease: "easeOut",
                                 times: [0, 0.2, 0.7, 0.8, 1]
                             }}
+                            // @ts-ignore - fetchPriority is valid but not in all React types yet
+                            fetchPriority="high"
                         />
 
                         {/* Text Reveal - Smooth Fade Up */}
